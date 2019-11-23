@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import OrderDetails from './Components/OrderDetails/OrderDetails';
 import Items from "./Components/Items/Items";
+import Empty from "./Components/OrderDetails/empty";
 
 class App extends Component {
   state = {
@@ -17,7 +18,6 @@ class App extends Component {
   };
 
   addFastFood = (itemIndex) => {
-    console.log(itemIndex)
     let items = [...this.state.items];
     let total = this.state.total;
     const productIndex = items.findIndex(index => index.name === itemIndex.name);
@@ -26,14 +26,12 @@ class App extends Component {
     this.setState({items, total});
   };
   removeFastFood = (itemIndex) => {
-    console.log(itemIndex);
     let items = [...this.state.items];
     let total = this.state.total;
     const productIndex = items.findIndex(index => index.name === itemIndex.name);
     items[productIndex].count--;
     total -= itemIndex.price;
     this.setState({items, total});
-    console.log(this.state.total)
   };
 
   render() {
@@ -42,11 +40,13 @@ class App extends Component {
         <Items
           addFastFood={this.addFastFood}
         />
-        <OrderDetails
+        {this.state.total > 0 ?
+            <OrderDetails
             productsApp={this.state.items}
             clickRemove={this.removeFastFood}
             totalPriceApp={this.state.total}
-        />
+        /> : <Empty/>
+        }
       </div>
     );
   }

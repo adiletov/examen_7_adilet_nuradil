@@ -9,21 +9,21 @@ const Product = [
   {name: 'Tea',price: 50},
   {name: 'Cola',price: 40},
 ];
-
 const  OrderDetails = (props) => {
-  console.log(props)k
   return (
     <div className={S.blockItems}>
       {Product.map((product, index) =>
         <div key={index} className={S.item}>
-          {props.productsApp[index].count > 0 ? <div>
+          {props.productsApp[index].count > 0 ?
+              <div>
             <span>{product.name}</span>
             <span> x {props.productsApp[index].count} шт</span>
+                <span>{props.productsApp[index].count * product.price}</span>
             <button className={S.btn}
               onClick={() => props.clickRemove(product)}
             >X
             </button>
-          </div> : null
+              </div> : null
           }
         </div>
       )}

@@ -1,0 +1,13 @@
+.blockItems{
+    width: 30%;
+    border: 1px solid black;
+    padding: 20px 10px;
+}
+.img{
+    width: 100px;
+}
+.item{
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
